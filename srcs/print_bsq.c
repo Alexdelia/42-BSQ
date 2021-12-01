@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_BSQ.c                                        :+:      :+:    :+:   */
+/*   print_bsq.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 00:03:02 by adelille          #+#    #+#             */
-/*   Updated: 2020/10/01 09:47:13 by bmerchin         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:15:44 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../includes/ft.h"
 
 void	ft_print_bsq(unsigned short **map, t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	b_sq_j;
 	int	b_sq_i;
 
@@ -30,7 +30,7 @@ void	ft_print_bsq(unsigned short **map, t_data *data)
 			if (map[j][i] == 0)
 				write(1, &data->obstacle, 1);
 			else if ((j > b_sq_j && j <= data->vertical)
-					&& (i > b_sq_i && i <= data->horizontal))
+				&& (i > b_sq_i && i <= data->horizontal))
 				write(1, &data->filler, 1);
 			else
 				write(1, &data->empty, 1);

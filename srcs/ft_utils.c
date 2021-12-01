@@ -6,15 +6,15 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 19:43:42 by adelille          #+#    #+#             */
-/*   Updated: 2020/10/01 11:13:29 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:15:06 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../includes/ft.h"
 
 void	ft_free(unsigned short **map, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->nbr_lines)

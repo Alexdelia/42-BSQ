@@ -6,11 +6,11 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2020/10/01 12:25:20 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:16:35 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../includes/ft.h"
 
 void	ft_next(char *file, t_data *data, unsigned short **map)
 {
@@ -18,7 +18,7 @@ void	ft_next(char *file, t_data *data, unsigned short **map)
 	ft_check_error(data);
 }
 
-int		main_ac2plus(int ac, char **av)
+int	main_ac2plus(int ac, char **av)
 {
 	char			*file;
 	unsigned short	**map;
@@ -46,9 +46,9 @@ int		main_ac2plus(int ac, char **av)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ac > 1)

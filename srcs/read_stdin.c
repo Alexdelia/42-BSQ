@@ -6,13 +6,13 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:33:07 by adelille          #+#    #+#             */
-/*   Updated: 2020/10/01 12:18:09 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:11:48 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../includes/ft.h"
 
-int				ft_len_first_line2(t_data *data)
+int	ft_len_first_line2(t_data *data)
 {
 	int		i;
 	int		len_lines;
@@ -46,14 +46,16 @@ unsigned short	**ft_read2(unsigned short **map, t_data *data)
 	data->len_lines = ft_len_first_line2(data);
 	ret = read(0, data->buff, 280000);
 	data->buff[ret] = '\0';
-	if (!(map = malloc(sizeof(unsigned short*) * 1001)))
+	map = malloc(sizeof(unsigned short *) * 1001);
+	if (!map)
 	{
 		data->error = 2;
 		return (0);
 	}
 	while (i < data->nbr_lines)
 	{
-		if (!(map[i] = malloc(sizeof(unsigned short) * 1001)))
+		map[i] = malloc(sizeof(unsigned short) * 1001);
+		if (!map[i])
 			return (ft_read_emergency(map, data, i));
 		i++;
 	}

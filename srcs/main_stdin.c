@@ -6,11 +6,11 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:39:11 by adelille          #+#    #+#             */
-/*   Updated: 2020/10/01 12:25:32 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 15:54:40 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../includes/ft.h"
 
 void	ft_next2(t_data *data, unsigned short **map)
 {
@@ -18,7 +18,7 @@ void	ft_next2(t_data *data, unsigned short **map)
 	ft_check_error(data);
 }
 
-int		main_ac1(void)
+int	main_ac1(void)
 {
 	unsigned short	**map;
 	t_data			data;

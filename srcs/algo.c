@@ -6,13 +6,13 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 20:03:41 by adelille          #+#    #+#             */
-/*   Updated: 2020/10/01 12:00:36 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:17:29 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../includes/ft.h"
 
-int		ft_sac_error(t_data *data)
+int	ft_sac_error(t_data *data)
 {
 	data->error = 1;
 	return (0);
@@ -31,8 +31,8 @@ void	ft_sac_p3(unsigned short **map, t_data *data)
 	else
 	{
 		tmp = (map[j - 1][i] > map[j][i - 1] ? map[j][i - 1] : map[j - 1][i]);
-		map[j][i] = (tmp > map[j - 1][i - 1] ?
-				(map[j - 1][i - 1] + 1) : (tmp + 1));
+		map[j][i] = (tmp > map[j - 1][i - 1]
+				? (map[j - 1][i - 1] + 1) : (tmp + 1));
 		if (map[j][i] > map[data->vertical][data->horizontal])
 		{
 			data->vertical = j;
@@ -41,7 +41,7 @@ void	ft_sac_p3(unsigned short **map, t_data *data)
 	}
 }
 
-int		ft_sac_p2(unsigned short **map, t_data *data, char *buff, int a)
+int	ft_sac_p2(unsigned short **map, t_data *data, char *buff, int a)
 {
 	while (buff[a])
 	{

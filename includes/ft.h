@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2020/10/01 12:26:09 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 15:53:07 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # define BUFF_SIZE 4096
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int		nbr_lines;
 	int		len_lines;
@@ -56,6 +56,6 @@ void			ft_sac2(unsigned short **map, t_data *data);
 int				ft_sac_error(t_data *data);
 void			ft_sac_p3(unsigned short **map, t_data *data);
 int				ft_sac_p2(unsigned short **map, t_data *data,
-		char *buff, int a);
+					char *buff, int a);
 
 #endif
