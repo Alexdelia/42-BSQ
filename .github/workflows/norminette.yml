@@ -1,0 +1,19 @@
+
+# .github/workflows/norminette.yml
+name: norminette
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    name: norminette
+    steps:
+      - uses: actions/checkout@v2
+      - uses: alexandregv/norminette-action@v3
+        with:
+          flags: '.'
