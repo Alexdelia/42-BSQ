@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:43:49 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:49:26 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ bool	solve_from_file(t_data *d, char *file)
 		return (false);
 	if (!process_from_file(d, map, file))
 		return (false); // might free
-	print_bsq(map, d);
+	print_bsq(map, d); // need to change write(1, &char, 1);
 	// free/clear or in main
 	return (true);
 }

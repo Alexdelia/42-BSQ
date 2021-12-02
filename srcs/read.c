@@ -6,13 +6,13 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:40:37 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:52:58 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
 
-static bool	map_char(t_data *d, char *buffer)
+static bool	map_arg(t_data *d, char *buffer)
 {
 	unsigned int	i;
 	unsigned int	x;
@@ -36,6 +36,8 @@ static bool	map_char(t_data *d, char *buffer)
 			return (ft_pser("Error: map error\t(nbr_lines isn't a number)\n"));
 		d->nbr_lines *= 10 + buffer[x++] - '0';
 	}
+	if (d->nbr_lines == 0)
+		return (ft_pser("Error: map error\t(nbr_lines can't be equal to 0)\n"));
 	return (true);
 }
 
@@ -49,7 +51,7 @@ bool	read_first_line(t_data *d, char *file)
 	if (read(d->fd, buffer, 50) <= 0)
 		return (ft_pser("Error: map error\t(file empty)\n"));
 	close(d->fd);
-	if (!map_char(d, buffer))
+	if (!map_arg(d, buffer))
 		return (false);
 	return (true);
 }
@@ -68,5 +70,7 @@ bool	read_stdin(t_data *d)
 		if (free == false)
 			free = true;
 	}
+	if (!map_arg(d, d->stdin))
+		return (false);
 	return (true);
 }
