@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:23:31 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 18:40:01 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:12:23 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned short	**init_map_file(char *file, unsigned short **map, t_data *d)
 	}
 	if (!read_first_line(d))
 		return (NULL);
-	//close(fd);
+	close(d->fd);
 	map = malloc(sizeof(unsigned short *) * d->nbr_lines);
 	if (!map)
 	{

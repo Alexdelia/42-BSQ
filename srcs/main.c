@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 18:24:52 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:35:18 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ bool	solve_from_file(t_data *d, char *file)
 	map = init_map_file(file, map, d);
 	if (!map)
 		return (false);
+	if (!process_from_file(file, map, d))
+		return (false);
+	print_bsq(map, d);
+	// free/clear or in main
 	return (true);
 }
 
@@ -78,5 +82,6 @@ int	main(int ac, char **av)
 	}
 	else
 		return (solve_from_stdin(&d));
+	// free/clear
 	return (0);
 }

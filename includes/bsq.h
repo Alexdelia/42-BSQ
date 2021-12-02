@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 18:57:09 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:32:00 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <stdbool.h>
 # include <fcntl.h>
 
 //# include <sys/types.h>
 //# include <sys/uio.h>
 
-# define BUFF_SIZE 4096
+//# define BUFF_SIZE 4096
+# define BUFFER_STDIN	280000
 
 /*typedef struct s_data
 {
@@ -43,20 +45,29 @@
 
 typedef struct s_data
 {
+	int				fd;
+	char			*stdin;
 	char			empty;
 	char			obstacle;
 	char			filler;
 	unsigned int	nbr_lines;
 	unsigned int	len_lines;
-	int				fd;
 }					t_data;
 
+unsigned short	**init_map_file(char *file, unsigned short **map, t_data *d);
+
+bool			read_first_line(t_data *d);
+bool			read_stdin(t_data *d);
 
 void			init_data(t_data *data);
+void			free_map(unsigned short **map, t_data *data);
+unsigned short	**free_map_i(unsigned short **map, int i);
 
-int				ft_strlen(char *str);
+int				ft_strlen(const char *str);
+char			*ft_strjoin_free(char *s1, char *s2,
+					bool const f1, bool const f2);
 int				ft_ps(char *str);
-int				ft_pser(char *str);
+bool			ft_pser(char *str);
 
 /*void			ft_sac(char *file, unsigned short **map, t_data *data);
 void			ft_print_bsq(unsigned short **map, t_data *data);

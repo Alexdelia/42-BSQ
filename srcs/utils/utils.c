@@ -6,13 +6,13 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 19:43:42 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 18:30:12 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:30:02 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bsq.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -27,9 +27,10 @@ int	ft_ps(char *str)
 	return (write(1, str, ft_strlen(str)));
 }
 
-int	ft_pser(char *str)
+bool	ft_pser(char *str)
 {
-	return (write(2, str, ft_strlen(str)));
+	write(2, str, ft_strlen(str));
+	return (false);
 }
 
 void	init_data(t_data *data)
