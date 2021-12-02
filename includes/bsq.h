@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:43:30 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:59:57 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 //# include <sys/types.h>
 //# include <sys/uio.h>
 
-//# define BUFF_SIZE 4096
+# define BUFFER_SIZE	4096
 # define BUFFER_STDIN	280000
 
 /*typedef struct s_data
