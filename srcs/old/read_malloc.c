@@ -6,11 +6,11 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:23:31 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 18:26:29 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:14:32 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/bsq.h"
+#include "../includes/ft.h"
 
 void	ft_store_security_struct(char *buff, t_data *data)
 {
@@ -43,9 +43,9 @@ int	ft_len_first_line(int fd, t_data *data, int len_lines)
 {
 	int		i;
 	int		ret;
-	char	buff[50];
+	char	buff[BUFF_SIZE + 1];
 
-	while ((ret = read(fd, buff, 50)) > 0 && data->w_bool < 2)
+	while ((ret = read(fd, buff, BUFF_SIZE)) > 0 && data->w_bool < 2)
 	{
 		buff[ret] = '\0';
 		if (data->w_bool == 0)
@@ -69,27 +69,29 @@ int	ft_len_first_line(int fd, t_data *data, int len_lines)
 unsigned short	**ft_read_emergency(unsigned short **map, t_data *data, int i)
 {
 	ft_emergency_free(map, i);
-	return (NULL);
+	data->error = 2;
+	return (0);
 }
 
-unsigned short	**init_map_file(char *file, unsigned short **map, t_data *data)
+unsigned short	**ft_read(char *file, unsigned short **map, t_data *data)
 {
+	int	fd;
 	int	i;
 
-	if ((data->fd = open(file, O_RDONLY)) < 0)
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) < 0)
 	{
-		ft_pser("Error: Open failed\n");
-		return (NULL);
+		data->error = 1;
+		return (0);
 	}
-	data->len_lines = ft_len_first_line(data->fd, data, 0);
-	//close(fd);
+	data->len_lines = ft_len_first_line(fd, data, 0);
+	close(fd);
 	map = malloc(sizeof(unsigned short *) * data->nbr_lines);
 	if (!map)
 	{
-		ft_pser("Error: Malloc failed\n");
-		return (NULL);
+		data->error = 2;
+		return (0);
 	}
-	i = 0;
 	while (i < data->nbr_lines)
 	{
 		map[i] = malloc(sizeof(unsigned short) * data->len_lines);
