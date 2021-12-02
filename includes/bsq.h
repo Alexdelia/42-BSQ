@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/01 15:53:07 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:59:57 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#ifndef BSQ_H
+# define BSQ_H
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
 # include <unistd.h>
-# define BUFF_SIZE 4096
+# include <stdlib.h>
+# include <stdio.h>
+# include <stdbool.h>
+# include <fcntl.h>
 
-typedef struct s_data
+//# include <sys/types.h>
+//# include <sys/uio.h>
+
+# define BUFFER_SIZE	4096
+# define BUFFER_STDIN	280000
+
+/*typedef struct s_data
 {
 	int		nbr_lines;
 	int		len_lines;
@@ -36,9 +41,35 @@ typedef struct s_data
 	int		i;
 	int		j;
 	char	buff[280001];
-}				t_data;
+}				t_data;*/
 
-void			ft_sac(char *file, unsigned short **map, t_data *data);
+typedef struct s_data
+{
+	int				fd;
+	char			*stdin;
+	char			empty;
+	char			obstacle;
+	char			filler;
+	unsigned int	nbr_lines;
+	unsigned int	len_lines;
+}					t_data;
+
+unsigned short	**init_map_file(t_data *d, unsigned short **map);
+
+bool			read_first_line(t_data *d, char *file);
+bool			read_stdin(t_data *d);
+
+void			init_data(t_data *data);
+void			free_map(unsigned short **map, t_data *data);
+unsigned short	**free_map_i(unsigned short **map, int i);
+
+int				ft_strlen(const char *str);
+char			*ft_strjoin_free(char *s1, char *s2,
+					bool const f1, bool const f2);
+int				ft_ps(char *str);
+bool			ft_pser(char *str);
+
+/*void			ft_sac(char *file, unsigned short **map, t_data *data);
 void			ft_print_bsq(unsigned short **map, t_data *data);
 void			ft_free(unsigned short **map, t_data *data);
 void			ft_initialize_data(t_data *data);
@@ -56,6 +87,6 @@ void			ft_sac2(unsigned short **map, t_data *data);
 int				ft_sac_error(t_data *data);
 void			ft_sac_p3(unsigned short **map, t_data *data);
 int				ft_sac_p2(unsigned short **map, t_data *data,
-					char *buff, int a);
+					char *buff, int a);*/
 
 #endif

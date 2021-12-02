@@ -1,34 +1,21 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
-if ((scalar @ARGV) != 3)
-{
-    print "$0 [COLS] [LINES] [DENSITY]\n";
-    exit;
-}
+use warnings;
+use strict;
 
-my $x = $ARGV[0];
-my $y = $ARGV[1];
-my $density = $ARGV[2];
-my $i = 0;
-my $j = 0;
+die "program x y density" unless (scalar(@ARGV) == 3);
 
-print $y . ".o#\n";
+my ($x, $y, $density) = @ARGV;
 
-while ($i < $y)
-{
-    $j = 0;
-    while ($j < $x)
-    {
-	if (int(rand($y)*2) < $density)
-	{
-	    print "o";
+print "$y.ox\n";
+for (my $i = 0; $i < $y; $i++) {
+	for (my $j = 0; $j < $x; $j++) {
+		if (int(rand($y) * 2) < $density) {
+			print "o";
+		}
+		else {
+			print ".";
+		}
 	}
-	else
-	{
-	    print ".";
-	}
-	$j++;
-    }
-    print "\n";
-    $i++;
+	print "\n";
 }

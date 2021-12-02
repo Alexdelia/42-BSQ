@@ -6,11 +6,11 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:49:26 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:16:35 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/bsq.h"
+#include "../includes/ft.h"
 
 void	ft_next(char *file, t_data *data, unsigned short **map)
 {
@@ -46,44 +46,14 @@ int	main_ac2plus(int ac, char **av)
 	return (0);
 }
 
-bool	solve_from_file(t_data *d, char *file)
-{
-	unsigned short	**map;
-
-	init_data(d);
-	if (!read_first_line(d, file))
-		return (false);
-	map = init_map_file(d, map);
-	if (!map)
-		return (false);
-	if (!process_from_file(d, map, file))
-		return (false); // might free
-	print_bsq(map, d); // need to change write(1, &char, 1);
-	// free/clear or in main
-	return (true);
-}
-
-bool	solve_from_stdin(t_data *d)
-{
-	init_data(d);
-	return (true);
-}
-
 int	main(int ac, char **av)
 {
-	t_data	d;
-	int		i;
+	int	i;
 
+	i = 0;
 	if (ac > 1)
-	{
-		i = 1;
-		while (i < ac && solve_from_file(&d, av[i]))
-			i++;
-		if (i < ac)
-			return (1);
-	}
+		i = main_ac2plus(ac, av);
 	else
-		return (solve_from_stdin(&d));
-	// free/clear
-	return (0);
+		i = main_ac1();
+	return (i);
 }
