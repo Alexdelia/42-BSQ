@@ -6,25 +6,16 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:23:31 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:12:23 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:43:06 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
 
-unsigned short	**init_map_file(char *file, unsigned short **map, t_data *d)
+unsigned short	**init_map_file(t_data *d, unsigned short **map)
 {
 	int	i;
 
-	d->fd = open(file, O_RDONLY);
-	if (d->fd < 0)
-	{
-		ft_pser("Error: Open failed\n");
-		return (NULL);
-	}
-	if (!read_first_line(d))
-		return (NULL);
-	close(d->fd);
 	map = malloc(sizeof(unsigned short *) * d->nbr_lines);
 	if (!map)
 	{

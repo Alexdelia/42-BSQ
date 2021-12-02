@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:35:18 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:43:49 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ bool	solve_from_file(t_data *d, char *file)
 {
 	unsigned short	**map;
 
-	init_data(&d);
-	map = init_map_file(file, map, d);
+	init_data(d);
+	if (!read_first_line(d, file))
+		return (false);
+	map = init_map_file(d, map);
 	if (!map)
 		return (false);
-	if (!process_from_file(file, map, d))
-		return (false);
+	if (!process_from_file(d, map, file))
+		return (false); // might free
 	print_bsq(map, d);
 	// free/clear or in main
 	return (true);
@@ -63,7 +65,7 @@ bool	solve_from_file(t_data *d, char *file)
 
 bool	solve_from_stdin(t_data *d)
 {
-	init_data(&d);
+	init_data(d);
 	return (true);
 }
 

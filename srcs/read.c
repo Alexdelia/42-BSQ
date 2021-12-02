@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:21:45 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:40:37 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ static bool	map_char(t_data *d, char *buffer)
 	return (true);
 }
 
-bool	read_first_line(t_data *d)
+bool	read_first_line(t_data *d, char *file)
 {
 	char	buffer[50];
 
+	d->fd = open(file, O_RDONLY);
+	if (d->fd < 0)
+		return (ft_pser("Error: Open failed\n"));
 	if (read(d->fd, buffer, 50) <= 0)
 		return (ft_pser("Error: map error\t(file empty)\n"));
+	close(d->fd);
 	if (!map_char(d, buffer))
 		return (false);
 	return (true);
