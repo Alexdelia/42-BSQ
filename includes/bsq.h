@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 18:22:35 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:57:09 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,14 @@ typedef struct s_data
 	int				fd;
 }					t_data;
 
-void			ft_sac(char *file, unsigned short **map, t_data *data);
+
+void			init_data(t_data *data);
+
+int				ft_strlen(char *str);
+int				ft_ps(char *str);
+int				ft_pser(char *str);
+
+/*void			ft_sac(char *file, unsigned short **map, t_data *data);
 void			ft_print_bsq(unsigned short **map, t_data *data);
 void			ft_free(unsigned short **map, t_data *data);
 void			ft_initialize_data(t_data *data);
@@ -69,6 +76,6 @@ void			ft_sac2(unsigned short **map, t_data *data);
 int				ft_sac_error(t_data *data);
 void			ft_sac_p3(unsigned short **map, t_data *data);
 int				ft_sac_p2(unsigned short **map, t_data *data,
-					char *buff, int a);
+					char *buff, int a);*/
 
 #endif
