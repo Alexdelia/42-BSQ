@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   ft_ps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/01 11:23:31 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:43:06 by adelille         ###   ########.fr       */
+/*   Created: 2020/09/29 19:43:42 by adelille          #+#    #+#             */
+/*   Updated: 2021/12/02 22:55:49 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/bsq.h"
+#include "../../includes/bsq.h"
 
-unsigned short	**init_map_file(t_data *d, unsigned short **map)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
-	map = malloc(sizeof(unsigned short *) * d->nbr_lines);
-	if (!map)
-	{
-		ft_pser("Error: Malloc failed\n");
-		return (NULL);
-	}
-	i = -1;
-	while (++i < d->nbr_lines)
-	{
-		map[i] = malloc(sizeof(unsigned short) * d->len_lines);
-		if (!map[i])
-			return (free_map_i(map, i));
-	}
-	return (map);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	ft_ps(char *str)
+{
+	return (write(1, str, ft_strlen(str)));
+}
+
+bool	ft_pser(char *str)
+{
+	write(2, str, ft_strlen(str));
+	return (false);
 }
