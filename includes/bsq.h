@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:59:57 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 23:40:23 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 typedef struct s_data
 {
 	int				fd;
-	char			*stdin;
+	char			*map;
 	char			empty;
 	char			obstacle;
 	char			filler;
@@ -54,14 +54,14 @@ typedef struct s_data
 	unsigned int	len_lines;
 }					t_data;
 
-unsigned short	**init_map_file(t_data *d, unsigned short **map);
+unsigned short	**init_map_file(t_data *d, unsigned short **matrix);
 
 bool			read_first_line(t_data *d, char *file);
 bool			read_stdin(t_data *d);
 
 void			init_data(t_data *data);
-void			free_map(unsigned short **map, t_data *data);
-unsigned short	**free_map_i(unsigned short **map, int i);
+void			free_matrix(unsigned short **matrix, t_data *data);
+unsigned short	**free_matrix_i(unsigned short **matrix, int i);
 
 int				ft_strlen(const char *str);
 char			*ft_strjoin_free(char *s1, char *s2,

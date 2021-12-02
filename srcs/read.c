@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:52:58 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 23:36:59 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ bool	read_stdin(t_data *d)
 	free = false;
 	while (read(0, buffer, BUFFER_STDIN) != EOF)
 	{
-		d->stdin = ft_strjoin_free(d->stdin, buffer, free, false);
-		if (!d->stdin)
+		d->map = ft_strjoin_free(d->map, buffer, free, false);
+		if (!d->map)
 			return (ft_pser("Error: Malloc failed\n"));
 		if (free == false)
 			free = true;
 	}
-	if (!map_arg(d, d->stdin))
+	if (!map_arg(d, d->map))
 		return (false);
 	return (true);
 }

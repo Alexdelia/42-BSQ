@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:23:31 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:55:36 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 23:39:45 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	init_data(t_data *data)
 {
 	data->nbr_lines = 0;
 	data->len_lines = 0;
-	data->stdin = NULL;
+	data->map = NULL;
 }
 
-unsigned short	**init_map_file(t_data *d, unsigned short **map)
+unsigned short	**init_matrix_file(t_data *d, unsigned short **matrix)
 {
 	int	i;
 
-	map = malloc(sizeof(unsigned short *) * d->nbr_lines);
-	if (!map)
+	matrix = malloc(sizeof(unsigned short *) * d->nbr_lines);
+	if (!matrix)
 	{
 		ft_pser("Error: Malloc failed\n");
 		return (NULL);
@@ -32,9 +32,9 @@ unsigned short	**init_map_file(t_data *d, unsigned short **map)
 	i = -1;
 	while (++i < d->nbr_lines)
 	{
-		map[i] = malloc(sizeof(unsigned short) * d->len_lines);
-		if (!map[i])
-			return (free_map_i(map, i));
+		matrix[i] = malloc(sizeof(unsigned short) * d->len_lines);
+		if (!matrix[i])
+			return (free_matrix_i(matrix, i));
 	}
-	return (map);
+	return (matrix);
 }

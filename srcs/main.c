@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 22:49:26 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/02 23:39:22 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ int	main_ac2plus(int ac, char **av)
 
 bool	solve_from_file(t_data *d, char *file)
 {
-	unsigned short	**map;
+	unsigned short	**matrix;
 
 	init_data(d);
 	if (!read_first_line(d, file))
 		return (false);
-	map = init_map_file(d, map);
-	if (!map)
+	matrix = init_matrix_file(d, matrix);
+	if (!matrix)
 		return (false);
-	if (!process_from_file(d, map, file))
+	if (!process_from_file(d, matrix, file))
 		return (false); // might free
-	print_bsq(map, d); // need to change write(1, &char, 1);
+	print_bsq(matrix, d); // need to change write(1, &char, 1);
 	// free/clear or in main
 	return (true);
 }
