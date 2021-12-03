@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 23:40:23 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:14:12 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 typedef struct s_data
 {
 	int				fd;
+	int				n;
 	char			*map;
 	char			empty;
 	char			obstacle;
@@ -56,7 +57,7 @@ typedef struct s_data
 
 unsigned short	**init_map_file(t_data *d, unsigned short **matrix);
 
-bool			read_first_line(t_data *d, char *file);
+bool			read_file(t_data *d, char *file);
 bool			read_stdin(t_data *d);
 
 void			init_data(t_data *data);
