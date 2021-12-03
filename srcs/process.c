@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 20:03:41 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 14:35:58 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 21:38:59 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool	process(t_data *d, unsigned short **matrix)
 	i = d->n;
 	x = 0;
 	y = 0;
-	while (d->map[i])
+	while (i < (d->len_lines + 1) * d->nbr_lines)
 	{
 		if (y >= d->nbr_lines)
 			return (ft_pser(
