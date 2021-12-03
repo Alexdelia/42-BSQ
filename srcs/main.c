@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 13:55:09 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:35:24 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	solve(t_data *d, char *file)
 	if (!process(d, matrix))
 		return (ft_clear(d, matrix, false));
 	paint_bsq(d, matrix);
-	print_bsq(d, matrix); // need to change write(1, &char, 1);
+	print_bsq(d);
 	return (ft_clear(d, matrix, true));
 }
 

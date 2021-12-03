@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 20:03:41 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 13:54:14 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:35:58 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static bool	process_end_check(t_data *d,
 {
 	if (d->map[i] == '\n')
 	{
-		if (*x != d->len_lines)
+		if (x[0] != d->len_lines)
 			return (ft_pser(
 					"Error: map error\t(all lines should be the same length)\n"));
-		*x = -1;
-		*y++;
+		x[0] = -1;
+		y[0] += 1;
 	}
 	else
 		return (ft_pser(
