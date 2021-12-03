@@ -6,13 +6,13 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 10:40:46 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:46:48 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
 
-static bool	map_arg(t_data *d, char *buffer)
+static bool	map_arg(t_data *d)
 {
 	unsigned int	i;
 	unsigned int	x;
@@ -69,7 +69,7 @@ bool	read_stdin(t_data *d)
 		if (free == false)
 			free = true;
 	}
-	if (!map_arg(d, d->map) || !read_len_lines(d))
+	if (!map_arg(d) || !read_len_lines(d))
 		return (false);
 	return (true);
 }
@@ -93,7 +93,7 @@ bool	read_file(t_data *d, char *file)
 			free = true;
 	}
 	close(d->fd);
-	if (!map_arg(d, d->map) || !read_len_lines(d))
+	if (!map_arg(d) || !read_len_lines(d))
 		return (false);
 	return (true);
 }

@@ -6,13 +6,13 @@
 #    By: adelille <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 15:56:29 by adelille          #+#    #+#              #
-#    Updated: 2021/12/01 16:22:30 by adelille         ###   ########.fr        #
+#    Updated: 2021/12/03 12:47:03 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	bsq
-#CC		= 	clang
-CC		=	gcc
+CC		= 	clang
+#CC		=	gcc
 RM		= 	rm -rf
 
 CFLAGS	=	-Wall -Werror -Wextra

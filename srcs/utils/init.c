@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:23:31 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 10:36:04 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:49:13 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	init_data(t_data *data)
 	data->map = NULL;
 }
 
-unsigned short	**init_matrix(t_data *d, unsigned short **matrix)
+unsigned short	**init_matrix(t_data *d)
 {
+	unsigned short	**matrix;
 	unsigned int	i;
 
 	matrix = malloc(sizeof(unsigned short *) * d->nbr_lines);
