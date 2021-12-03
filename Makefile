@@ -6,14 +6,22 @@
 #    By: adelille <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 15:56:29 by adelille          #+#    #+#              #
-#    Updated: 2021/12/04 00:23:31 by adelille         ###   ########.fr        #
+#    Updated: 2021/12/04 00:31:16 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	bsq
-#CC		= 	clang
-CC		=	gcc
-RM		= 	rm -rf
+NAME		=	bsq
+
+NAME_DEBUG	=	bsq_debug
+
+#NAME_CLANG			=	bsq_clang
+#NAME_CLANG_O2		=	bsq_clang_O2
+#NAME_CLANG_O3		=	bsq_clang_O3
+#NAME_CLANG_Ofast	=	bsq_clang_Ofast
+
+CC			= 	clang
+#CC			=	gcc
+RM			= 	rm -rf
 
 CFLAGS	=	-Wall -Werror -Wextra
 #CFLAGS	+=	-O2
@@ -85,7 +93,10 @@ $(OBJSPATH)%.o: $(SRCSPATH)%.c
 	@printf "█"
 
 debug:
-	@make CFLAGS+=-DDEBUG=1
+	@make CFLAGS+=-DDEBUG=1 NAME=$(NAME_DEBUG)
+
+#test:
+#	@make 
 
 clean:
 	@$(RM) $(OBJSNAME)
@@ -94,8 +105,8 @@ clean:
 
 fclean:		clean
 	@$(RM) $(OBJSPATH)
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(NAME_DEBUG)
 
 re:			fclean all
 
-.PHONY: all clean fclean re launch debug
+.PHONY: all clean fclean re launch debug test
