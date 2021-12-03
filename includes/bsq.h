@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 13:43:56 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:33:58 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ bool			read_file(t_data *d, char *file);
 bool			read_stdin(t_data *d);
 
 bool			process(t_data *d, unsigned short **matrix);
+
+void			paint_bsq(t_data *d, unsigned short **matrix);
+void			print_bsq(t_data *data);
 
 
 void			init_data(t_data *data);

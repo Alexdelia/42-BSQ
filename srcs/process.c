@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 20:03:41 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 13:49:57 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 13:54:14 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ static void	process_empty(t_data *d, unsigned short **matrix,
 		matrix[y][x] = 1;
 	else
 	{
-		tmp = (matrix[y - 1][x] > matrix[y][x - 1]
-				? matrix[y][x - 1] : matrix[y - 1][x]);
-		matrix[y][x] = (tmp > matrix[y - 1][x - 1]
-				? (matrix[y - 1][x - 1] + 1) : (tmp + 1));
+		if (matrix[y - 1][x] > matrix[y][x - 1])
+			tmp = matrix[y][x - 1];
+		else
+			tmp = matrix[y - 1][x];
+		if (tmp > matrix[y - 1][x - 1])
+			matrix[y][x] = matrix[y - 1][x - 1] + 1;
+		else
+			matrix[y][x] = tmp + 1;
 		if (matrix[y][x] > matrix[d->bsq_y][d->bsq_x])
 		{
 			d->bsq_y = y;
