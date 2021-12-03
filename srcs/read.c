@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 15:13:54 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 15:18:27 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,24 @@ static bool	read_len_lines(t_data *d)
 bool	read_stdin(t_data *d)
 {
 	char	buffer[BUFFER_STDIN];
-	bool	free;
 	int		ret;
 
-	free = false;
-	ret = read(0, buffer, BUFFER_STDIN + 1);
-	while (ret != EOF)
+	d->map = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!d->map)
+		return (ft_pser("Error: Malloc failed\n"));
+	ret = read(0, d->map, BUFFER_SIZE);
+	if (ret != 0 && ret != EOF)
+	{
+		d->map[ret] = '\0';
+		ret = read(0, buffer, BUFFER_STDIN);
+	}
+	while (ret != 0 && ret != EOF)
 	{
 		buffer[ret] = '\0';
-		d->map = ft_strjoin_free(d->map, buffer, free, false);
+		d->map = ft_strjoin_free(d->map, buffer, true, false);
 		if (!d->map)
 			return (ft_pser("Error: Malloc failed\n"));
-		if (free == false)
-			free = true;
-		ret = read(0, buffer, BUFFER_STDIN + 1);
+		ret = read(0, buffer, BUFFER_STDIN);
 	}
 	if (!map_arg(d) || !read_len_lines(d))
 		return (false);
@@ -90,11 +94,11 @@ bool	read_file(t_data *d, char *file)
 	d->map = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!d->map)
 		return (ft_pser("Error: Malloc failed\n"));
-	ret = read(d->fd, d->map, BUFFER_SIZE + 1);
+	ret = read(d->fd, d->map, BUFFER_SIZE);
 	if (ret != 0 && ret != EOF)
 	{
 		d->map[ret] = '\0';
-		ret = read(d->fd, buffer, BUFFER_SIZE + 1);
+		ret = read(d->fd, buffer, BUFFER_SIZE);
 	}
 	while (ret != 0 && ret != EOF)
 	{
@@ -102,11 +106,11 @@ bool	read_file(t_data *d, char *file)
 		d->map = ft_strjoin_free(d->map, buffer, true, false);
 		if (!d->map)
 			return (ft_pser("Error: Malloc failed\n"));
-		ret = read(d->fd, buffer, BUFFER_SIZE + 1);
+		ret = read(d->fd, buffer, BUFFER_SIZE);
 	}
 	close(d->fd);
 	if (!map_arg(d) || !read_len_lines(d))
-		return (false);	
+		return (false);
 	/*write(1, d->map, (d->nbr_lines + 1) * d->len_lines);
 	write(1, "\n\n", 2);*/
 	printf("|%s\n\n", d->map);
