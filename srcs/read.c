@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 12:46:48 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 15:13:54 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static bool	map_arg(t_data *d)
 	{
 		if (d->map[x] > '9' || d->map[x] < '0')
 			return (ft_pser("Error: map error\t(nbr_lines isn't a number)\n"));
-		d->nbr_lines *= 10 + d->map[x++] - '0';
+		d->nbr_lines = d->nbr_lines * 10 + d->map[x++] - '0';
 	}
 	return (true);
 }
@@ -59,15 +59,19 @@ bool	read_stdin(t_data *d)
 {
 	char	buffer[BUFFER_STDIN];
 	bool	free;
+	int		ret;
 
 	free = false;
-	while (read(0, buffer, BUFFER_STDIN) != EOF)
+	ret = read(0, buffer, BUFFER_STDIN + 1);
+	while (ret != EOF)
 	{
+		buffer[ret] = '\0';
 		d->map = ft_strjoin_free(d->map, buffer, free, false);
 		if (!d->map)
 			return (ft_pser("Error: Malloc failed\n"));
 		if (free == false)
 			free = true;
+		ret = read(0, buffer, BUFFER_STDIN + 1);
 	}
 	if (!map_arg(d) || !read_len_lines(d))
 		return (false);
@@ -77,23 +81,34 @@ bool	read_stdin(t_data *d)
 bool	read_file(t_data *d, char *file)
 {
 	char	buffer[BUFFER_SIZE];
-	bool	free;
+	int		ret;
 
 	d->map = NULL;
 	d->fd = open(file, O_RDONLY);
 	if (d->fd < 0)
 		return (ft_pser("Error: Open failed\n"));
-	free = false;
-	while (read(d->fd, buffer, BUFFER_SIZE) != EOF)
+	d->map = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!d->map)
+		return (ft_pser("Error: Malloc failed\n"));
+	ret = read(d->fd, d->map, BUFFER_SIZE + 1);
+	if (ret != 0 && ret != EOF)
 	{
-		d->map = ft_strjoin_free(d->map, buffer, free, false);
+		d->map[ret] = '\0';
+		ret = read(d->fd, buffer, BUFFER_SIZE + 1);
+	}
+	while (ret != 0 && ret != EOF)
+	{
+		buffer[ret] = '\0';
+		d->map = ft_strjoin_free(d->map, buffer, true, false);
 		if (!d->map)
 			return (ft_pser("Error: Malloc failed\n"));
-		if (free == false)
-			free = true;
+		ret = read(d->fd, buffer, BUFFER_SIZE + 1);
 	}
 	close(d->fd);
 	if (!map_arg(d) || !read_len_lines(d))
-		return (false);
+		return (false);	
+	/*write(1, d->map, (d->nbr_lines + 1) * d->len_lines);
+	write(1, "\n\n", 2);*/
+	printf("|%s\n\n", d->map);
 	return (true);
 }
