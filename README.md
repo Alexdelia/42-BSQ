@@ -6,5 +6,5 @@ Will you find the biggest square ?
 ## Map generator
 Perl script `gen_map.pl`:
 ```sh
-perl gen_map.pl [COLS] [LINES] [DENSITY]
+perl gen_map.pl [LEN_LINES] [NBR_LINES] [DENSITY]
 ```
