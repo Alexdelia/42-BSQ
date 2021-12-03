@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 11:23:31 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 12:49:13 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 13:44:21 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	init_data(t_data *data)
 {
 	data->nbr_lines = 0;
 	data->len_lines = 0;
+	data->bsq_x = 0;
+	data->bsq_y = 0;
 	data->map = NULL;
 }
 

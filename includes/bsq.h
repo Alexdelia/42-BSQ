@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 12:49:55 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 13:43:56 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@
 
 typedef struct s_data
 {
-	int				fd;
-	int				n;
 	char			*map;
 	char			empty;
 	char			obstacle;
 	char			filler;
 	unsigned int	nbr_lines;
 	unsigned int	len_lines;
+	unsigned int	bsq_x;
+	unsigned int	bsq_y;
+	unsigned long	n;
+	int				fd;
 }					t_data;
 
 bool			read_file(t_data *d, char *file);
