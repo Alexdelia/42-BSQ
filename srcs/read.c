@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 10:13:47 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:40:46 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ bool	read_file(t_data *d, char *file)
 	char	buffer[BUFFER_SIZE];
 	bool	free;
 
+	d->map = NULL;
 	d->fd = open(file, O_RDONLY);
 	if (d->fd < 0)
 		return (ft_pser("Error: Open failed\n"));

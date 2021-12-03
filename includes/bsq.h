@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 10:14:12 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:37:23 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,11 @@ typedef struct s_data
 	unsigned int	len_lines;
 }					t_data;
 
-unsigned short	**init_map_file(t_data *d, unsigned short **matrix);
-
 bool			read_file(t_data *d, char *file);
 bool			read_stdin(t_data *d);
 
 void			init_data(t_data *data);
+unsigned short	**init_matrix(t_data *d, unsigned short **matrix);
 void			free_matrix(unsigned short **matrix, t_data *data);
 unsigned short	**free_matrix_i(unsigned short **matrix, int i);
 

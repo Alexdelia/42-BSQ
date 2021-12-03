@@ -6,67 +6,43 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:44:26 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/02 23:39:22 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/03 11:06:05 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
 
-void	ft_next(char *file, t_data *data, unsigned short **map)
+bool	ft_clear(t_data *d, unsigned short **matrix, bool ret)
 {
-	ft_sac(file, map, data);
-	ft_check_error(data);
+	if (d->map)
+		free(d->map);
+	if (matrix)
+		free_matrix(matrix, d);
+	return (ret);
 }
 
-int	main_ac2plus(int ac, char **av)
-{
-	char			*file;
-	unsigned short	**map;
-	t_data			data;
-	int				i;
-
-	i = 1;
-	while (i < ac)
-	{
-		ft_initialize_data(&data);
-		file = av[i];
-		map = ft_read(file, map, &data);
-		if (data.error == 2)
-			return (0);
-		ft_check_error(&data);
-		if (data.error == 0)
-			ft_next(file, &data, map);
-		if (data.error == 0)
-			ft_print_bsq(map, &data);
-		ft_free(map, &data);
-		if (i + 1 < ac)
-			write(1, "\n", 1);
-		i++;
-	}
-	return (0);
-}
-
-bool	solve_from_file(t_data *d, char *file)
+bool	solve(t_data *d, char *file)
 {
 	unsigned short	**matrix;
 
 	init_data(d);
-	if (!read_first_line(d, file))
-		return (false);
-	matrix = init_matrix_file(d, matrix);
+	if (!file)
+	{
+		if (!read_stdin(d))
+			return (ft_clear(d, NULL, false));
+	}
+	else
+	{
+		if (!read_file(d, file))
+			return (ft_clear(d, NULL, false));
+	}
+	matrix = init_matrix(d, matrix);
 	if (!matrix)
-		return (false);
-	if (!process_from_file(d, matrix, file))
-		return (false); // might free
+		return (ft_clear(d, NULL, false));
+	if (!process(d, matrix, file))
+		return (ft_clear(d, matrix, false));
 	print_bsq(matrix, d); // need to change write(1, &char, 1);
-	// free/clear or in main
-	return (true);
-}
-
-bool	solve_from_stdin(t_data *d)
-{
-	init_data(d);
-	return (true);
+	return (ft_clear(d, matrix, true));
 }
 
 int	main(int ac, char **av)
@@ -77,13 +53,12 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		i = 1;
-		while (i < ac && solve_from_file(&d, av[i]))
+		while (i < ac && solve(&d, av[i]))
 			i++;
 		if (i < ac)
 			return (1);
 	}
 	else
-		return (solve_from_stdin(&d));
-	// free/clear
+		return (solve(&d, NULL));
 	return (0);
 }
