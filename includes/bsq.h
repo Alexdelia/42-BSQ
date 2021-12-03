@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 14:39:24 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/04 00:08:38 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@
 # include <stdbool.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE	4096
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	4096
+# endif
+
 # define BUFFER_STDIN	280000
+
+# ifndef DEBUG
+#  define DEBUG			0
+# endif
 
 typedef struct s_data
 {
@@ -43,6 +50,7 @@ bool			process(t_data *d, unsigned short **matrix);
 
 void			paint_bsq(t_data *d, unsigned short **matrix);
 void			print_bsq(t_data *data);
+void			print_debug(t_data *d, unsigned short **matrix);
 
 void			init_data(t_data *data);
 unsigned short	**init_matrix(t_data *d);

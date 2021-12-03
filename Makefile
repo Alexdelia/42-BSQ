@@ -6,13 +6,13 @@
 #    By: adelille <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 15:56:29 by adelille          #+#    #+#              #
-#    Updated: 2021/12/03 14:45:33 by adelille         ###   ########.fr        #
+#    Updated: 2021/12/04 00:23:31 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	bsq
-CC		= 	clang
-#CC		=	gcc
+#CC		= 	clang
+CC		=	gcc
 RM		= 	rm -rf
 
 CFLAGS	=	-Wall -Werror -Wextra
@@ -20,7 +20,7 @@ CFLAGS	=	-Wall -Werror -Wextra
 #CFLAGS	+=	-O3
 #CFLAGS	+=	-Ofast
 #CFLAGS	+=	-g
-CFLAGS	+=	-g3
+#CFLAGS	+=	-g3
 #CFLAGS	+=	-fsanitize=address
 
 # **************************************************************************** #
@@ -77,12 +77,15 @@ launch:
 	$(call progress_bar)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBNAME) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJSPATH)%.o: $(SRCSPATH)%.c
 	@mkdir -p $(dir $@) # 2> /dev/null || true
 	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 	@printf "█"
+
+debug:
+	@make CFLAGS+=-DDEBUG=1
 
 clean:
 	@$(RM) $(OBJSNAME)
@@ -95,4 +98,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: all clean fclean re launch
+.PHONY: all clean fclean re launch debug

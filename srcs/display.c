@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 00:03:02 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 19:12:24 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/04 00:24:39 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_debug(t_data *d, unsigned short **matrix)
 	unsigned int	x;
 	unsigned int	y;
 
+	printf("\n");
 	y = 0;
 	while (y < d->nbr_lines)
 	{
@@ -34,7 +35,6 @@ void	print_debug(t_data *d, unsigned short **matrix)
 		y++;
 		printf("\n");
 	}
-	printf("\n");
 }
 
 void	paint_bsq(t_data *d, unsigned short **matrix)
