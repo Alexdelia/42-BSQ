@@ -6,18 +6,18 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 00:03:02 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/05 21:02:40 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/05 22:35:37 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
 
-void	print_bsq(t_data *d)
+static void	print_bsq(t_data *d)
 {
 	(void)!write(1, &d->map[d->n], d->nbr_lines * (d->len_lines + 1));
 }
 
-void	print_debug(t_data *d, unsigned short **matrix)
+static void	print_debug(t_data *d, unsigned short **matrix)
 {
 	unsigned int	x;
 	unsigned int	y;
@@ -37,7 +37,7 @@ void	print_debug(t_data *d, unsigned short **matrix)
 	}
 }
 
-void	paint_bsq(t_data *d, unsigned short **matrix)
+static void	paint_bsq(t_data *d, unsigned short **matrix)
 {
 	unsigned int	x;
 	unsigned int	y;
@@ -53,10 +53,18 @@ void	paint_bsq(t_data *d, unsigned short **matrix)
 		while (x <= d->len_lines)
 		{
 			if ((y >= top_left_y && y <= d->bsq_y)
-				&& (x >= top_left_x && x <= d->bsq_x))
+					&& (x >= top_left_x && x <= d->bsq_x))
 				d->map[(y * (d->len_lines + 1)) + x + d->n] = d->filler;
 			x++;
 		}
 		y++;
 	}
+}
+
+void	display_bsq(t_data *d, unsigned short **matrix)
+{
+	paint_bsq(d, matrix);
+	print_bsq(d);
+	if (DEBUG != 0)
+		print_debug(d, matrix);
 }
