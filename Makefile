@@ -6,18 +6,12 @@
 #    By: adelille <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 15:56:29 by adelille          #+#    #+#              #
-#    Updated: 2021/12/04 00:31:16 by adelille         ###   ########.fr        #
+#    Updated: 2021/12/05 21:21:48 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	bsq
-
 NAME_DEBUG	=	bsq_debug
-
-#NAME_CLANG			=	bsq_clang
-#NAME_CLANG_O2		=	bsq_clang_O2
-#NAME_CLANG_O3		=	bsq_clang_O3
-#NAME_CLANG_Ofast	=	bsq_clang_Ofast
 
 CC			= 	clang
 #CC			=	gcc
@@ -27,7 +21,7 @@ CFLAGS	=	-Wall -Werror -Wextra
 #CFLAGS	+=	-O2
 #CFLAGS	+=	-O3
 #CFLAGS	+=	-Ofast
-#CFLAGS	+=	-g
+CFLAGS	+=	-g
 #CFLAGS	+=	-g3
 #CFLAGS	+=	-fsanitize=address
 
@@ -99,7 +93,7 @@ debug:
 #	@make 
 
 clean:
-	@$(RM) $(OBJSNAME)
+	@$(RM) $(OBJSPATH)
 	@echo "$(B)Cleared$(D)"
 
 

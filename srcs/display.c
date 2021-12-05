@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 00:03:02 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/04 00:24:39 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/05 21:02:40 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_bsq(t_data *d)
 {
-	write(1, &d->map[d->n], d->nbr_lines * (d->len_lines + 1));
+	(void)!write(1, &d->map[d->n], d->nbr_lines * (d->len_lines + 1));
 }
 
 void	print_debug(t_data *d, unsigned short **matrix)

@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/03 19:17:13 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/05 21:37:07 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static bool	read_len_lines(t_data *d)
 
 bool	read_stdin(t_data *d)
 {
-	char	buffer[BUFFER_STDIN];
+	char	buffer[BUFFER_STDIN + 1];
 	int		ret;
 
 	d->map = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
@@ -80,7 +80,7 @@ bool	read_stdin(t_data *d)
 
 bool	read_file(t_data *d, char *file)
 {
-	char	buffer[BUFFER_SIZE];
+	char	buffer[BUFFER_SIZE + 1];
 	int		ret;
 
 	d->map = NULL;
@@ -92,12 +92,18 @@ bool	read_file(t_data *d, char *file)
 		return (ft_pser("Error: Malloc failed\n"));
 	ret = read(d->fd, d->map, BUFFER_SIZE);
 	if (ret != 0 && ret != EOF)
+	{
+		d->map[ret] = '\0';
 		ret = read(d->fd, buffer, BUFFER_SIZE);
+	}
+	int i = 0;
 	while (ret != 0 && ret != EOF)
 	{
+		buffer[ret] = '\0';
 		d->map = ft_strjoin_free(d->map, buffer, true, false);
 		if (!d->map)
 			return (ft_pser("Error: Malloc failed\n"));
+		printf("\r%d", i++);
 		ret = read(d->fd, buffer, BUFFER_SIZE);
 	}
 	close(d->fd);
