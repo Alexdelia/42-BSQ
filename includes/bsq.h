@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/05 23:13:15 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/05 23:34:23 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_data
 
 bool			read_file(t_data *d, char *file);
 bool			read_stdin(t_data *d);
+bool			map_arg(t_data *d);
+bool			read_len_lines(t_data *d);
 
 bool			process(t_data *d, unsigned short **matrix);
 
