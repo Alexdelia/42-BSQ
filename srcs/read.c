@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/05 22:32:19 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/05 23:10:18 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,35 +55,41 @@ static bool	read_len_lines(t_data *d)
 	return (true);
 }
 
-bool	read_map(t_data *d, int fd, char *buffer, int buffer_size)
+bool	read_map(t_data *d, int fd, int buffer_size)
 {
-	int	ret;
+	char	*buffer;
+	int		ret;
+	int		size;
 
-	d->map = (char *)malloc(sizeof(char) * buffer_size + 1);
+	d->map = (char *)malloc(sizeof(char) * BUFFER_INIT + 1);
 	if (!d->map)
 		return (ft_pser("Error: Malloc failed\n"));
-	ret = read(fd, d->map, buffer_size);
+	ret = read(fd, d->map, BUFFER_INIT);
 	if (ret != 0 && ret != EOF)
 	{
 		d->map[ret] = '\0';
+		size = ret;
+		buffer = (char *)malloc(sizeof(char) * buffer_size + 1);
+		if (!buffer)
+			return (ft_pser("Error: Malloc failed\n"));
 		ret = read(fd, buffer, buffer_size);
 	}
 	while (ret != 0 && ret != EOF)
 	{
 		buffer[ret] = '\0';
-		d->map = ft_strjoin_free(d->map, buffer, true, false);
+		d->map = ft_strjoin_bsq(d->map, size, buffer, buffer_size);
+		size += ret;
 		if (!d->map)
 			return (ft_pser("Error: Malloc failed\n"));
 		ret = read(fd, buffer, buffer_size);
 	}
+	free(buffer);
 	return (true);
 }
 
 bool	read_stdin(t_data *d)
 {
-	char	buffer[BUFFER_STDIN + 1];
-
-	if (!read_map(d, 0, buffer, BUFFER_STDIN))
+	if (!read_map(d, 0, BUFFER_STDIN))
 		return (false);
 	if (!map_arg(d) || !read_len_lines(d))
 		return (false);
@@ -92,13 +98,11 @@ bool	read_stdin(t_data *d)
 
 bool	read_file(t_data *d, char *file)
 {
-	char	buffer[BUFFER_SIZE + 1];
-
 	d->map = NULL;
 	d->fd = open(file, O_RDONLY);
 	if (d->fd < 0)
 		return (ft_pser("Error: Open failed\n"));
-	if (!read_map(d, d->fd, buffer, BUFFER_SIZE))
+	if (!read_map(d, d->fd, BUFFER_SIZE))
 	{
 		close(d->fd);
 		return (false);

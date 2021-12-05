@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 00:03:02 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/05 22:35:37 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/05 23:00:33 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	paint_bsq(t_data *d, unsigned short **matrix)
 		while (x <= d->len_lines)
 		{
 			if ((y >= top_left_y && y <= d->bsq_y)
-					&& (x >= top_left_x && x <= d->bsq_x))
+				&& (x >= top_left_x && x <= d->bsq_x))
 				d->map[(y * (d->len_lines + 1)) + x + d->n] = d->filler;
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/05 22:35:18 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/05 23:13:15 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	100000
+#  define BUFFER_SIZE	100000000
 # endif
 
+# define BUFFER_INIT	4096
 # define BUFFER_STDIN	280000
 
 # ifndef DEBUG
@@ -60,8 +61,8 @@ void			free_matrix(unsigned short **matrix, t_data *data);
 unsigned short	**free_matrix_i(unsigned short **matrix, int i);
 
 int				ft_strlen(const char *str);
-char			*ft_strjoin_free(char *s1, char *s2,
-					bool const f1, bool const f2);
+char			*ft_strjoin_bsq(char *s1, const int size1,
+					char *s2, const int size2);
 int				ft_ps(char *str);
 bool			ft_pser(char *str);
 
