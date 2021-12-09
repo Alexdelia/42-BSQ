@@ -6,13 +6,13 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/09 16:19:18 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/09 16:20:27 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
 
-static bool	read_big_map(t_data *d, int fd, int buffer_size, int size)
+static bool	read_big_map(t_data *d, int fd, size_t buffer_size, size_t size)
 {
 	char	*buffer;
 	ssize_t	ret;
@@ -35,7 +35,7 @@ static bool	read_big_map(t_data *d, int fd, int buffer_size, int size)
 	return (true);
 }
 
-static bool	read_map(t_data *d, int fd, int buffer_size)
+static bool	read_map(t_data *d, int fd, size_t buffer_size)
 {
 	ssize_t		ret;
 
