@@ -6,7 +6,7 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:35:28 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/05 23:32:56 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/09 16:18:24 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	read_big_map(t_data *d, int fd, int buffer_size, int size)
 {
 	char	*buffer;
-	int		ret;
+	ssize_t	ret;
 
 	buffer = (char *)malloc(sizeof(char) * buffer_size + 1);
 	if (!buffer)
