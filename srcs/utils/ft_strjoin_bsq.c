@@ -6,15 +6,15 @@
 /*   By: adelille <adelille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:26:06 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/06 21:08:49 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/09 16:27:43 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/bsq.h"
 
-static int	ft_strcpy(char *dst, const char *src, const int size)
+static int	ft_strcpy(char *dst, const char *src, const size_t size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < size && src[i])
@@ -26,7 +26,8 @@ static int	ft_strcpy(char *dst, const char *src, const int size)
 	return (i);
 }
 
-char	*ft_strjoin_bsq(char *s1, const int size1, char *s2, const int size2)
+char	*ft_strjoin_bsq(char *s1, const size_t size1,
+		char *s2, const size_t size2)
 {
 	char	*res;
 

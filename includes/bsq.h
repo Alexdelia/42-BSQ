@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:09:14 by adelille          #+#    #+#             */
-/*   Updated: 2021/12/06 21:05:04 by adelille         ###   ########.fr       */
+/*   Updated: 2021/12/09 16:27:12 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ unsigned short	**init_matrix(t_data *d);
 void			free_matrix(unsigned short **matrix, t_data *data);
 unsigned short	**free_matrix_i(unsigned short **matrix, int i);
 
-char			*ft_strjoin_bsq(char *s1, const int size1,
-					char *s2, const int size2);
+char			*ft_strjoin_bsq(char *s1, const size_t size1,
+					char *s2, const size_t size2);
 bool			ft_pser(char *str);
 
 #endif
